@@ -37,8 +37,6 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Scroller;
 
-import com.nikkoaiello.mobile.android.PinchImageView;
-
 /**
  * A horizontally scrollable {@link ViewGroup} with items populated from an
  * {@link Adapter}. The ViewFlow uses a buffer to store loaded {@link View}s in.
@@ -190,18 +188,6 @@ public class ViewFlow extends AdapterView<Adapter> {
 	public boolean onTouchEvent(MotionEvent ev) {
 		if (getChildCount() == 0)
 			return false;
-		
-		if (ev.getPointerCount() == 2)
-		{
-			PinchImageView view = (PinchImageView)getSelectedView();
-			
-			if (view != null)
-			{
-				view.onTouchEvent(ev);
-			}
-			
-			return false;			
-		}
 
 		if (mVelocityTracker == null) {
 			mVelocityTracker = VelocityTracker.obtain();
