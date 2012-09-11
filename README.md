@@ -4,6 +4,9 @@ ViewFlow is an Android UI widget providing a horizontally scrollable [ViewGroup]
 
 The component is a [Library Project](http://developer.android.com/guide/developing/eclipse-adt.html#libraryProject). This means that there's no need to copy-paste resources into your own project, simply add the viewflow component as a reference to any project.
 
+## When to use
+This library might be suitable if you have an indeterminate number of views in your viewflow, if instead you have a static numbers of views you ought to look at Fragments and the ViewPager in the Compatibility Library instead.
+
 ## Usage
 
 ### In your layout
@@ -34,6 +37,17 @@ If you need to listen to screen change events you would want to implement your o
     viewFlow.setOnViewSwitchListener(new ViewSwitchListener() {
         public void onSwitched(View v, int position) {
             // Your code here
+        }
+    });
+
+### Listen on initialize view events
+
+If you need a lazy View initialization you would want to implement your own `ViewFlow.ViewLazyInitializeListener` and pass it to the `setOnViewLazyInitializeListener()` method.
+
+    viewFlow.setOnViewLazyInitializeListener(new ViewLazyInitializeListener() {
+        public void onViewLazyInitialize(View view, int position) {
+            // Your code here e.g.
+            ((MyAdapter)((AbsListView)view).getAdapter()).initializeData();
         }
     });
 
