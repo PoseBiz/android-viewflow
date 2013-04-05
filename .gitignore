@@ -5,3 +5,7 @@ gen
 target
 local.properties
 proguard.cfg
+
+# Eclipse project files
+.classpath
+.project
